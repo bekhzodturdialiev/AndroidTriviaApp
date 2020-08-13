@@ -21,14 +21,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
-    dataBinding {
-        enabled = true
+    compileSdkVersion 30
+    buildFeatures {
+        dataBinding true
     }
     defaultConfig {
         applicationId 'com.example.android.navigation'
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 30
         vectorDrawables.useSupportLibrary = true
         versionCode 1
         versionName "1.0"
