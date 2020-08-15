@@ -16,15 +16,33 @@
 
 package com.example.android.navigation
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+
 import androidx.databinding.DataBindingUtil
+import android.os.Bundle
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.example.android.navigation.R.id.myNavHostFragment
 import com.example.android.navigation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         @Suppress("UNUSED_VARIABLE")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        val navController = Navigation.findNavController(this@MainActivity, R.id.myNavHostFragment)
+        NavigationUI.setupActionBarWithNavController(this, navController)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(myNavHostFragment)
+        return navController.navigateUp()
+    }
+
+
 }
