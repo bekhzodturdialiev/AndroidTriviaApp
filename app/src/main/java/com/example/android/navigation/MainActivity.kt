@@ -25,23 +25,32 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.R.id.myNavHostFragment
 import com.example.android.navigation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         @Suppress("UNUSED_VARIABLE")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        drawerLayout = binding.drawerLayout
+        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+
         val navController = Navigation.findNavController(this@MainActivity, R.id.myNavHostFragment)
-        NavigationUI.setupActionBarWithNavController(this, navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        NavigationUI.setupWithNavController(binding.navView, navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(myNavHostFragment)
-        return navController.navigateUp()
+//        return navController.navigateUp()  //before adding drawer menu
+        return NavigationUI.navigateUp(navController, drawerLayout)
     }
 
 
