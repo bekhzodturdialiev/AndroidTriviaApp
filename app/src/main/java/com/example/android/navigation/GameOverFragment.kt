@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -34,6 +35,7 @@ class GameOverFragment : Fragment() {
         binding.tryAgainButton.setOnClickListener(){view: View ->
             view.findNavController().navigate(GameOverFragmentDirections.actionGameOverFragmentToGameFragment())
         }
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.game_over)
         return binding.root
     }
 }

@@ -2,6 +2,7 @@ package com.example.android.navigation
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
@@ -50,6 +51,7 @@ class TitleFragment : Fragment() {
                 Navigation.createNavigateOnClickListener(TitleFragmentDirections.actionTitleFragmentToGameFragment())
         )
         setHasOptionsMenu(true) //Have Options Menu
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
         return binding.root
     }
 
